@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
-
-
-
 {% block content %}
+
+
 {%  include 'status.html' %}
 
 <br>
@@ -12,13 +11,18 @@
             <h5 style="font-weight: bold;">CUSTOMERS:</h5>
             <hr>
             <div class="card card-body">
-                <a class="btn btn-primary  btn-sm btn-block" href="">Create Customer</a>
-                <table class="table table-sm">
+                <a style="font-size: 15px;" class="btn btn-primary  btn-sm btn-block" href="">Create Customer</a>
+                <table class="table table-sm table-hover">
                     <tr>
-                        <th></th>
-                        <th>Customer</th>
-                        <th>Orders</th>
+                        <th style="font-weight: bolder;">Customer</th>
+                        <th style="font-weight: bolder;">Orders</th>
                     </tr>
+                    {% for customer in customers %}
+                    <tr>
+                        <th>{{ customer.name }}</th>
+                        <th>{{ customer.phone }}</th>
+                    </tr>
+                    {% endfor %}
 
                 </table>
             </div>
@@ -28,15 +32,25 @@
             <h5 style="font-weight: bold;">LAST 5 ORDERS</h5>
             <hr>
             <div class="card card-body">
-                <a class="btn btn-primary  btn-sm btn-block" href="">Create Order</a>
-                <table class="table table-sm">
+                <a style="font-size: 15px;" class="btn btn-primary  btn-sm btn-block" href="">Create Order</a>
+                <table class="table table-sm table-hover">
                     <tr>
-                        <th>Product</th>
-                        <th>Date Orderd</th>
-                        <th>Status</th>
-                        <th>Update</th>
-                        <th>Remove</th>
+                        <th style="font-weight: bolder;">Product</th>
+                        <th style="font-weight: bolder;">Date Orderd</th>
+                        <th style="font-weight: bolder;">Status</th>
+                        <th style="font-weight: bolder;">Update</th>
+                        <th style="font-weight: bolder;">Remove</th>
                     </tr>
+
+                    {% for order in orders %}
+                    <tr>
+                        <th>{{ order.product.name }}</th>
+                        <th>{{ order.date_created|date:'F d, Y' }}</th>
+                        <th>{{ order.status }}</th>
+                        <td><a href="#"><button type="button" class="btn btn-light btn-sm">Update</button></a></td>
+                        <td><a href="#"><button type="button" class="btn btn-dark btn-sm">Delete</button></a></td>
+                    </tr>
+                    {% endfor %}
 
                 </table>
             </div>
