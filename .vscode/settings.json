@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/home/abeer/anaconda3/envs/mmi-crm/bin/python"
+    "python.pythonPath": "/home/abeer/anaconda3/envs/mmi-crm/bin/python",
+    "python.formatting.provider": "autopep8"
 }
