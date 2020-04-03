@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-
-
 {% block content %}
 
 <br>
@@ -11,7 +9,7 @@
                 <h5>Products</h5>
             </div>
             <div class="card card-body">
-                <table class="table">
+                <table class="table table-hover">
                     <tr>
                         <th style="font-weight: bolder;">Product</th>
                         <th style="font-weight: bolder;">Category</th>
@@ -23,6 +21,7 @@
                         <td>{{ product.name }}</td>
                         <td>{{ product.category }}</td>
                         <td>{{ product.price }}</td>
+
                     </tr>
                     {% endfor %}
 
