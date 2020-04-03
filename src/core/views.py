@@ -3,6 +3,10 @@ from django.http import HttpResponse
 from .models import *
 
 
+def index(request):
+    return render(request, 'index.html')
+
+
 def dashboard(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
@@ -30,8 +34,8 @@ def products(request):
 
 def customer(request, pk):
     customer = Customer.objects.get(id=pk)
-    total_orders = customer.order_set.all().count()
     orders = customer.order_set.all()
+    total_orders = orders.count()
     context = {
         'customer': customer,
         'total_orders': total_orders,
