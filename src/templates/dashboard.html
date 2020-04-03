@@ -16,11 +16,13 @@
                     <tr>
                         <th style="font-weight: bolder;">Customer</th>
                         <th style="font-weight: bolder;">Orders</th>
+                        <th></th>
                     </tr>
                     {% for customer in customers %}
                     <tr>
                         <th>{{ customer.name }}</th>
                         <th>{{ customer.phone }}</th>
+                        <th><a href="{% url 'customer' customer.id %}" class="btn btn-light btn-sm">Visit</a></th>
                     </tr>
                     {% endfor %}
 
