@@ -11,8 +11,12 @@
             <div class="card card-body">
                 <h5>Customer:</h5>
                 <hr>
-                <a class="btn btn-info  btn-md" href="">Update Customer</a>
-                <a class="btn btn-danger  btn-md" href="">Delete Customer</a>
+                <div style="margin-top: 10px;">
+                    <a class="btn btn-info btn-lg mt-2 mb-2" href="#">Update Customer</a>
+                    <a class="btn btn-danger btn-lg mt-2 mb-2" href="#">Delete Customer</a>
+                </div>
+                <!-- <a class="btn btn-info  btn-md" href="">Update Customer</a>
+                <a class="btn btn-danger  btn-md" href="">Delete Customer</a> -->
 
             </div>
         </div>
@@ -69,8 +73,8 @@
                         <td>{{ order.product.category }}</td>
                         <td>{{ order.date_created }}</td>
                         <td>{{ order.status }}</td>
-                        <td><a href="#"><button type="button" style="border-radius: 4px;">Update</button></a></td>
-                        <td><a href="#"><button type="button" style="border-radius: 4px;">Remove</button></a></td>
+                        <td><a href="#" class="btn btn-light btn-sm">Update</a></td>
+                        <td><a href="#" class="btn btn-dark btn-sm">Remove</a></td>
                     </tr>
                     {% endfor %}
                 </table>
