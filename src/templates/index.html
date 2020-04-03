@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MMI</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %} " rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <nav>
+                <div class="menu-icon">
+                    <i class="fa fa-bars fa-2x"></i>
+                </div>
+                <div class="logo">
+                    <a href="{% url 'index' %}"><img style="height:70px;width: 70px; margin-right: 20px;"
+                            src="{% static 'images/circle-cropped.png' %}" alt=""></a>
+                </div>
+                <div class="menu" style="font-weight: bolder;font-size: larger;">
+                    <ul>
+                        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        {% include 'contact.html' %}
+
+
+        <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+            <!--Call to action-->
+            <div style="background-color: #303030;" class="pt-4">
+
+                <div style="padding-bottom: 15px;">
+                    <a href="#">
+                        <i class="fab fa-facebook-f fa-2x mr-5"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fab fa-twitter fa-2x mr-5"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fab fa-youtube fa-2x mr-5"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fab fa-pinterest fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Social icons -->
+
+            <!--Copyright-->
+            <div style="background-color: #202020;" class="footer-copyright py-3">
+                © 2020 Copyright · MM
+                <a href="#"></a>
+            </div>
+            <!--/.Copyright-->
+
+        </footer>
+        <!--/.Footer-->
+
+    </div>
+    {% include 'scripts.html' %}
+</body>
+
+</html>
