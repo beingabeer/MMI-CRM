@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <br>
-<div class="container-fluid">
+<div class="container-fluid" style="margin-left: 100px;">
     <div class="row">
         <div class="col-md-6">
             <div class="card card-body">
@@ -10,7 +10,7 @@
                 <form action="" method="POST">
                     {% csrf_token %}
                     <a href="{% url 'dashboard' %}" class="btn btn-md btn-primary">Cancel</a>
-                    <input type="submit" class="btn btn-danger btn-md" name="Delete">
+                    <input type="submit" class="btn btn-danger btn-md" name="Delete" value="Delete">
                 </form>
             </div>
         </div>

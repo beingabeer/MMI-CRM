@@ -10,7 +10,11 @@
 
                 <form action="" method="POST">
                     {% csrf_token %}
-                    {{ form|crispy }}
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                    {{ form}}
+                    <hr style="border: 1px dashed black;">
+                    {% endfor %}
                     <input type="submit" style="font-weight: bolder;" class="btn btn-primary btn-md" name="Submit">
                 </form>
 
