@@ -2,7 +2,8 @@
 
     <h1>Contact Us</h1>
     <hr style="background-color: black;max-width: 700px;">
-    <form class="contact-form" action="index.html" method="post">
+    <form class="contact-form" action="" method="post">
+        {% csrf_token %}
         <input type="text" class="contact-form-text" placeholder="Your name">
         <input type="email" class="contact-form-text" placeholder="Your email">
         <input type="text" class="contact-form-text" placeholder="Your phone">
