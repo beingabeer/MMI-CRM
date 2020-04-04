@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<br>
+<div class="container-fluid" style="margin-left: 100px;">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card card-body">
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input type="submit" style="font-weight: bolder;" class="btn btn-primary btn-md" name="Submit">
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

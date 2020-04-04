@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-body">
+                <p>Are you sure you want to delete "{{ item.product.name }}" from the orders?</p>
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <a href="{% url 'dashboard' %}" class="btn btn-md btn-primary">Cancel</a>
+                    <input type="submit" class="btn btn-danger btn-md" name="Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
