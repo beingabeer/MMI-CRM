@@ -9,11 +9,12 @@
                 <h5>Products</h5>
             </div>
             <div class="card card-body">
-                <table class="table table-hover">
+                <table class="table table-hover" style="width: 100%;">
                     <tr>
                         <th style="font-weight: bolder;">Product</th>
                         <th style="font-weight: bolder;">Category</th>
                         <th style="font-weight: bolder;">Price</th>
+                        <th style="font-weight: bolder;">Date Added</th>
                     </tr>
 
                     {% for product in products %}
@@ -21,7 +22,7 @@
                         <td>{{ product.name }}</td>
                         <td>{{ product.category }}</td>
                         <td>{{ product.price }}</td>
-
+                        <td>{{ product.date_created|date:'F d, Y' }}</td>
                     </tr>
                     {% endfor %}
 
