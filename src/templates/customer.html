@@ -9,11 +9,11 @@
     <div class="row">
         <div class="col-md">
             <div class="card card-body">
-                <h5>Customer:</h5>
+                <h5 style="font-weight: bolderb;">Customer: {{ customer.name }}</h5>
                 <hr>
                 <div style="margin-top: 10px;">
-                    <a class="btn btn-primary btn-lg mt-2 mb-2" href="#">Update Customer</a>
-                    <a class="btn btn-info btn-lg mt-2 mb-2" href="{% url 'create_order' customer.id %}">Place New
+                    <a class="btn btn-light btn-lg mt-2 mb-2" href="#">Update Customer</a>
+                    <a class="btn btn-light btn-lg mt-2 mb-2" href="{% url 'create_order' customer.id %}">Place New
                         Order</a>
                 </div>
                 <!-- <a class="btn btn-info  btn-md" href="">Update Customer</a>
@@ -47,7 +47,7 @@
             <div class="card card-body">
                 <form method="get">
 
-                    <button class="btn btn-success" type="submit">Search</button>
+                    <button class="btn btn-info" type="submit">Search</button>
                 </form>
             </div>
         </div>
@@ -72,7 +72,7 @@
                     <tr>
                         <td>{{ order.product }}</td>
                         <td>{{ order.product.category }}</td>
-                        <td>{{ order.date_created }}</td>
+                        <td>{{ order.date_created|date:'F d, Y' }}</td>
                         <td>{{ order.status }}</td>
                         <td><a href="{% url 'update_order' order.id %}" class="btn btn-light btn-sm">Update</a></td>
                         <td><a href="{% url 'delete_order' order.id %}" class="btn btn-dark btn-sm">Remove</a></td>
