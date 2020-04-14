@@ -38,7 +38,11 @@
                         <li><a style="font-weight: bolder;font-size: large;" href="{% url 'dashboard' %}">Dashboard</a>
                         </li>
                         <li><a style="font-weight: bolder;font-size: large;" href="#contact">Contact</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a style="font-weight: bolder;font-size: large;" href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
                         <li><a style="font-weight: bolder;font-size: large;" href="{% url 'login' %}">Login</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </nav>
