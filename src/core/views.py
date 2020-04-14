@@ -2,12 +2,45 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
 from .models import *
-from .forms import OrderForm
+from .forms import OrderForm, CreateUserForm
 from .filters import OrderFilter
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 
 def index(request):
     return render(request, 'index.html')
+
+
+def login_page(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+
+    context = {}
+    return render(request, 'login.html', context)
+
+
+def register_page(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(
+                request, f"Hi {username}! Your Account has been created. You can now log in.")
+            return redirect('login')
+
+    context = {'form': form}
+    return render(request, 'register.html', context)
 
 
 def dashboard(request):

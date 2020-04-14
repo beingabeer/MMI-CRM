@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>MMI Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+
+    <div class="login-box">
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        <h1>Login</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="textbox">
+                <i class="fas fa-user"></i>
+                <input type="text" name="username" placeholder="Username">
+            </div>
+
+            <div class="textbox">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Password">
+            </div>
+
+            <input type="submit" class="btn" value="Sign In">
+            <br>
+            <br>
+            <div>
+                <small>Don't have an account?</small>&nbsp;&nbsp;&nbsp;<a style="color: blue"
+                    href="{% url 'register' %}">Sign Up</a>
+            </div>
+        </form>
+    </div>
+    {% include 'scripts.html' %}
+</body>
+
+</html>

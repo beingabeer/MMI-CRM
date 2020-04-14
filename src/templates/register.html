@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>MMI Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <div class="login-box">
+        <h1>Register</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="textbox">
+                <i class="fas fa-user"></i>
+                <!-- <input type="text" placeholder="Username"> -->
+                {{ form.username }}
+            </div>
+
+            <div class="textbox">
+                <i class="fas fa-envelope"></i>
+                <!-- <input type="text" placeholder="Username"> -->
+                {{ form.email }}
+            </div>
+
+            <div class="textbox">
+                <i class="fas fa-lock"></i>
+                <!-- <input type="text" placeholder="Username"> -->
+                {{ form.password1 }}
+            </div>
+
+            <div class="textbox">
+                <i class="fas fa-lock"></i>
+                <!-- <input type="password" placeholder="Password"> -->
+                {{ form.password2 }}
+            </div>
+
+            <input type="submit" class="btn" value="Register">
+            <br>
+            <br>
+            <div>
+                <small>Already have an account?</small>&nbsp;&nbsp;&nbsp;<a style="color: blue"
+                    href="{% url 'login' %}">Sign In</a>
+            </div>
+            <br>
+            <br>
+            {{ form.errors }}
+        </form>
+    </div>
+
+
+
+    {% include 'scripts.html' %}
+</body>
+
+</html>
