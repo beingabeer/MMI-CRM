@@ -47,9 +47,6 @@ def register_page(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
-            group = Group.objects.get(name='customer')
-            user.groups.add(group)
-            Customer.objects.create(user=user)
             username = form.cleaned_data.get('username')
             messages.success(
                 request, f"Hi {username}! Your Account has been created. You can now log in.")
