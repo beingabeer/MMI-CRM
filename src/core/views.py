@@ -67,6 +67,7 @@ def dashboard(request):
     total_customers = customers.count()
     delivered = orders.filter(status='Delivered').count()
     pending = orders.filter(status='Pending').count()
+    last_seven_orders = Order.objects.all().order_by('-id')[:7]
 
     context = {
         'orders': orders,
@@ -74,7 +75,8 @@ def dashboard(request):
         'total_orders': total_orders,
         'total_customers': total_customers,
         'delivered': delivered,
-        'pending': pending
+        'pending': pending,
+        'last_seven_orders': last_seven_orders
     }
     return render(request, 'dashboard.html', context)
 
