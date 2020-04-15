@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block link %}
+<link href="{% static 'css/account_settings.css' %}" rel="stylesheet">
+{% endblock link %}
+
+
+{% block content %}
+<div class="container-fluid content-section">
+
+    <div class="row">
+
+        <!-- Left Info -->
+        <div class="col-md-3">
+            <div class="card" style="background-color: #f8f9fa">
+                <div class="card-body" style="padding: 10px;">
+                    {% if customer.profile_pic %}
+                    <img src="{{ user.customer.profile_pic.url }}" class="img-fluid img-thumbnail"
+                        style="width:100%;margin-bottom: 15px;">
+                    {% else %}
+                    <h3>No image to display</h3>
+                    {% endif %}
+                    <h2 class="card-title">{{ customer.user }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Song Info -->
+        <div class="col-md-9 order-first order-md-2">
+
+            <div>
+                <a style="color: white;text-decoration-line: none;" class="btn btn-primary btn-md" role="button"
+                    href="#">Back to Profile</a>&nbsp;&nbsp;
+
+                <a style="color: white;text-decoration-line: none;" class="btn btn-warning btn-md" role="button"
+                    href="#">Logout</a>&nbsp;&nbsp;
+            </div>
+            <div class="card" style="margin-top: 25px;margin-bottom: 10px;">
+                <div class="card-body" style=" margin-bottom: 50px;">
+
+                    <h3>Update Settings </h3>
+
+                    {% if error_message %}
+                    <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+
+                        <input class="btn btn-primary" value="Submit" type="submit" name="Update Information">
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock content %}

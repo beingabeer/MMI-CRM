@@ -15,7 +15,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'products' %}">Products</a>
             </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'account-settings' %}">Settings</a>
+            </li>
             {% endif %}
+
         </ul>
         {% if user.is_authenticated %}
         <ul class="navbar-nav">
