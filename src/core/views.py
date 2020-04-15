@@ -8,7 +8,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .decorators import unauthenticated_user
+from .decorators import unauthenticated_user, allowed_users, admin_only
+from django.contrib.auth.models import Group
 
 
 def index(request):
@@ -45,7 +46,9 @@ def register_page(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            group = Group.objects.get(name='customer')
+            user.groups.add(group)
             username = form.cleaned_data.get('username')
             messages.success(
                 request, f"Hi {username}! Your Account has been created. You can now log in.")
@@ -56,6 +59,7 @@ def register_page(request):
 
 
 @login_required(login_url='login')
+@admin_only
 def dashboard(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
@@ -78,6 +82,7 @@ def dashboard(request):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def products(request):
     products = Product.objects.all()
     context = {'products': products}
@@ -85,6 +90,7 @@ def products(request):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def customer(request, pk):
     customer = Customer.objects.get(id=pk)
     orders = customer.order_set.all()
@@ -103,6 +109,7 @@ def customer(request, pk):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def createOrder(request, pk):
     OrderFormSet = inlineformset_factory(
         Customer, Order, fields=('product', 'status'), extra=5)
@@ -121,6 +128,7 @@ def createOrder(request, pk):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def updateOrder(request, pk):
     order = Order.objects.get(id=pk)
     form = OrderForm(instance=order)
@@ -135,6 +143,7 @@ def updateOrder(request, pk):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def deleteOrder(request, pk):
     order = Order.objects.get(id=pk)
     if request.method == 'POST':
@@ -142,3 +151,8 @@ def deleteOrder(request, pk):
         return redirect('/dashboard/')
     context = {'item': order}
     return render(request, 'delete_form.html', context)
+
+
+def user_profile(request):
+    context = {}
+    return render(request, 'user.html', context)
