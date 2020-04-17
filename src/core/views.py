@@ -10,6 +10,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users, admin_only
 from django.contrib.auth.models import Group
+from django.conf import settings
+from django.core.mail import send_mail
+from django.template.loader import get_template
 
 
 def index(request):
@@ -17,7 +20,24 @@ def index(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         message = request.POST.get('message')
-        print(name, email, message)
+
+        subject = 'Contact Form from MMInc'
+        from_email = settings.DEFAULT_FROM_EMAIL
+        to_email = [settings.DEFAULT_FROM_EMAIL]
+
+        context = {
+            'user': name,
+            'email': email,
+            'message': message
+        }
+
+        contact_message = get_template('contact_message.txt').render(context)
+        send_mail(subject, contact_message, from_email,
+                  to_email, fail_silently=True)
+
+
+        messages.success(request, f"Hi, Your email has been sent!")
+        # print(name, email, message)
         return redirect('/#contact')
     return render(request, 'index.html')
 
