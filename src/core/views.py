@@ -25,19 +25,25 @@ def index(request):
         from_email = settings.DEFAULT_FROM_EMAIL
         to_email = [settings.DEFAULT_FROM_EMAIL]
 
-        context = {
-            'user': name,
-            'email': email,
-            'message': message
-        }
+        contact_message = f"{message}, from {name} with email {email}"
 
-        contact_message = get_template('contact_message.txt').render(context)
+        # contact_message = get_template('contact_message.txt').render(context)
         send_mail(subject, contact_message, from_email,
                   to_email, fail_silently=True)
 
-
         messages.success(request, f"Hi, Your email has been sent!")
-        # print(name, email, message)
+
+        # Reply back to user
+
+        subject_reply = 'Message from MMInc'
+        from_email = settings.DEFAULT_FROM_EMAIL
+        to_email = [email]
+
+        contact_message_reply = f"Thank you for your Email. We will get back to you asap."
+
+        send_mail(subject, contact_message_reply, from_email,
+                  to_email, fail_silently=True)
+
         return redirect('/#contact')
     return render(request, 'index.html')
 
