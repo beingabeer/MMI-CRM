@@ -1,7 +1,7 @@
 # MMI-CRM
 
-## Demo Link
+### Demo Link
 [MMI-CRM](https://mminc.herokuapp.com/)
 
-## Overview
+### Overview
 This is an open-source customer relationship Management application built with Django keeping flexibility in mind. It can be customized and extended to fit your own business needs.
